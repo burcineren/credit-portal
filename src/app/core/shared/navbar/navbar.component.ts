@@ -14,13 +14,15 @@ export class NavbarComponent {
     this.items = [
       {
         label: 'Kredi Başvuru Formu',
+        link: '/'
       },
       {
         label: 'Başvuru Listesi',
+        link: '/credits-list'
       },
       {
         label: 'Pivot Table Raporlama Ekranı',
-
+        link: '/credits-report'
       }
     ];
   }
