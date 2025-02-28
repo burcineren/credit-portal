@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { CreditApplicationService } from 'src/app/core/services/credit-application.service';
 import { CreditApplication } from 'src/app/core/store/credits-state/credit-aplication.model';
 
@@ -9,6 +10,7 @@ import { CreditApplication } from 'src/app/core/store/credits-state/credit-aplic
   styleUrls: ['./credits-list.component.scss']
 })
 export class CreditListComponent implements OnInit {
+  @ViewChild('dt') dt!: Table;
   applications: CreditApplication[] = [];
   selectedApplication: CreditApplication | null = null;
   expandedRows: { [key: string]: boolean } = {};
@@ -22,6 +24,10 @@ export class CreditListComponent implements OnInit {
       },
       error: (err) => console.error('Error fetching applications:', err)
     });
+  }
+  applyFilter(event: Event, field: string) {
+    const input = event.target as HTMLInputElement;
+    this.dt.filter(input.value, field, 'contains');
   }
   onRowSelect(event: any) {
     this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event.data.name });
