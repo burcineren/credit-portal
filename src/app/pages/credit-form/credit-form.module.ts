@@ -4,7 +4,6 @@ import { CreditFormComponent } from './credit-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-// PrimeNG modules
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 
@@ -16,7 +15,7 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     ReactiveFormsModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
   ]
 })
 export class CreditFormModule { }

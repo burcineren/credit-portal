@@ -329,16 +329,6 @@
       "creditAmount": 22000,
       "creditType": "Ticari",
       "applicationDate": "2023-04-13"
-    },
-    {
-      "id": "7280",
-      "firstName": "test burçin",
-      "lastName": "Eren",
-      "tcNo": "33333333333",
-      "phone": "05382609051",
-      "income": 20000,
-      "creditAmount": 333,
-      "creditType": "Taşıt"
     }
   ]
 }

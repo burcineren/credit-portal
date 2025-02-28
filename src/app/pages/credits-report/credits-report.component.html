@@ -7,7 +7,7 @@
 
     <div>
       <div>
-        <strong>Toplam Başvuru:</strong> {{ applications?.length || 0 }}
+        <strong>Toplam Başvuru:</strong> {{ applications?.length || null }}
       </div>
       <span class="ml-4">
         <strong>Ortalama Kredi Tutarı:</strong> {{ getOverallAverage() }}
@@ -40,8 +40,6 @@
     [groupRowsBy]="selectedGroup?.value"
     [sortMode]="'single'"
     [sortField]="selectedGroup?.value"
-    (onRowSelect)="onRowSelect($event)"
-    (onRowUnselect)="onRowUnselect($event)"
     tableStyleClass="excel-pivot-table"
     [tableStyle]="{ 'min-width': '50rem' }"
     [paginator]="true"
