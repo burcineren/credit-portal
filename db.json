@@ -1,3 +1,304 @@
 {
-  "applications": []
+  "applications": [
+    {
+      "id": "1",
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "tcNo": "10000000001",
+      "phone": "05550000001",
+      "income": 3000,
+      "creditAmount": 15000,
+      "creditType": "Konut"
+    },
+    {
+      "id": "2",
+      "firstName": "Bob",
+      "lastName": "Johnson",
+      "tcNo": "10000000002",
+      "phone": "05550000002",
+      "income": 4000,
+      "creditAmount": 20000,
+      "creditType": "İş"
+    },
+    {
+      "id": "3",
+      "firstName": "Charlie",
+      "lastName": "Williams",
+      "tcNo": "10000000003",
+      "phone": "05550000003",
+      "income": 3500,
+      "creditAmount": 18000,
+      "creditType": "Ticari"
+    },
+    {
+      "id": "4",
+      "firstName": "David",
+      "lastName": "Brown",
+      "tcNo": "10000000004",
+      "phone": "05550000004",
+      "income": 5000,
+      "creditAmount": 25000,
+      "creditType": "Konut"
+    },
+    {
+      "id": "5",
+      "firstName": "Eva",
+      "lastName": "Jones",
+      "tcNo": "10000000005",
+      "phone": "05550000005",
+      "income": 4500,
+      "creditAmount": 22000,
+      "creditType": "İş"
+    },
+    {
+      "id": "6",
+      "firstName": "Frank",
+      "lastName": "Garcia",
+      "tcNo": "10000000006",
+      "phone": "05550000006",
+      "income": 3200,
+      "creditAmount": 17000,
+      "creditType": "Ticari"
+    },
+    {
+      "id": "7",
+      "firstName": "Grace",
+      "lastName": "Miller",
+      "tcNo": "10000000007",
+      "phone": "05550000007",
+      "income": 3800,
+      "creditAmount": 21000,
+      "creditType": "Konut"
+    },
+    {
+      "id": "8",
+      "firstName": "Henry",
+      "lastName": "Davis",
+      "tcNo": "10000000008",
+      "phone": "05550000008",
+      "income": 4200,
+      "creditAmount": 24000,
+      "creditType": "İş"
+    },
+    {
+      "id": "9",
+      "firstName": "Ivy",
+      "lastName": "Martinez",
+      "tcNo": "10000000009",
+      "phone": "05550000009",
+      "income": 3600,
+      "creditAmount": 19000,
+      "creditType": "Ticari"
+    },
+    {
+      "id": "10",
+      "firstName": "Jack",
+      "lastName": "Rodriguez",
+      "tcNo": "10000000010",
+      "phone": "05550000010",
+      "income": 4800,
+      "creditAmount": 23000,
+      "creditType": "Konut"
+    },
+    {
+      "id": "11",
+      "firstName": "Kelly",
+      "lastName": "Taylor",
+      "tcNo": "10000000011",
+      "phone": "05550000011",
+      "income": 3100,
+      "creditAmount": 16000,
+      "creditType": "İş"
+    },
+    {
+      "id": "12",
+      "firstName": "Liam",
+      "lastName": "Anderson",
+      "tcNo": "10000000012",
+      "phone": "05550000012",
+      "income": 3900,
+      "creditAmount": 21000,
+      "creditType": "Ticari"
+    },
+    {
+      "id": "13",
+      "firstName": "Mia",
+      "lastName": "Thomas",
+      "tcNo": "10000000013",
+      "phone": "05550000013",
+      "income": 3300,
+      "creditAmount": 17500,
+      "creditType": "Konut"
+    },
+    {
+      "id": "14",
+      "firstName": "Noah",
+      "lastName": "Moore",
+      "tcNo": "10000000014",
+      "phone": "05550000014",
+      "income": 4700,
+      "creditAmount": 24000,
+      "creditType": "İş"
+    },
+    {
+      "id": "15",
+      "firstName": "Olivia",
+      "lastName": "Martin",
+      "tcNo": "10000000015",
+      "phone": "05550000015",
+      "income": 4100,
+      "creditAmount": 20000,
+      "creditType": "Ticari"
+    },
+    {
+      "id": "16",
+      "firstName": "Paul",
+      "lastName": "Lee",
+      "tcNo": "10000000016",
+      "phone": "05550000016",
+      "income": 5200,
+      "creditAmount": 26000,
+      "creditType": "Konut"
+    },
+    {
+      "id": "17",
+      "firstName": "Quinn",
+      "lastName": "Perez",
+      "tcNo": "10000000017",
+      "phone": "05550000017",
+      "income": 4300,
+      "creditAmount": 21000,
+      "creditType": "İş"
+    },
+    {
+      "id": "18",
+      "firstName": "Ruby",
+      "lastName": "Thompson",
+      "tcNo": "10000000018",
+      "phone": "05550000018",
+      "income": 3700,
+      "creditAmount": 19500,
+      "creditType": "Ticari"
+    },
+    {
+      "id": "19",
+      "firstName": "Sam",
+      "lastName": "White",
+      "tcNo": "10000000019",
+      "phone": "05550000019",
+      "income": 4400,
+      "creditAmount": 22000,
+      "creditType": "Konut"
+    },
+    {
+      "id": "20",
+      "firstName": "Tina",
+      "lastName": "Harris",
+      "tcNo": "10000000020",
+      "phone": "05550000020",
+      "income": 4600,
+      "creditAmount": 23000,
+      "creditType": "İş"
+    },
+    {
+      "id": "21",
+      "firstName": "Uma",
+      "lastName": "Clark",
+      "tcNo": "10000000021",
+      "phone": "05550000021",
+      "income": 3800,
+      "creditAmount": 21000,
+      "creditType": "Ticari"
+    },
+    {
+      "id": "22",
+      "firstName": "Victor",
+      "lastName": "Lewis",
+      "tcNo": "10000000022",
+      "phone": "05550000022",
+      "income": 5000,
+      "creditAmount": 25000,
+      "creditType": "Konut"
+    },
+    {
+      "id": "23",
+      "firstName": "Wendy",
+      "lastName": "Robinson",
+      "tcNo": "10000000023",
+      "phone": "05550000023",
+      "income": 4200,
+      "creditAmount": 22000,
+      "creditType": "İş"
+    },
+    {
+      "id": "24",
+      "firstName": "Xavier",
+      "lastName": "Walker",
+      "tcNo": "10000000024",
+      "phone": "05550000024",
+      "income": 3900,
+      "creditAmount": 20000,
+      "creditType": "Ticari"
+    },
+    {
+      "id": "25",
+      "firstName": "Yvonne",
+      "lastName": "Hall",
+      "tcNo": "10000000025",
+      "phone": "05550000025",
+      "income": 3500,
+      "creditAmount": 18000,
+      "creditType": "Konut"
+    },
+    {
+      "id": "26",
+      "firstName": "Zach",
+      "lastName": "Young",
+      "tcNo": "10000000026",
+      "phone": "05550000026",
+      "income": 4100,
+      "creditAmount": 21000,
+      "creditType": "İş"
+    },
+    {
+      "id": "27",
+      "firstName": "Amy",
+      "lastName": "King",
+      "tcNo": "10000000027",
+      "phone": "05550000027",
+      "income": 3300,
+      "creditAmount": 19000,
+      "creditType": "Ticari"
+    },
+    {
+      "id": "28",
+      "firstName": "Brian",
+      "lastName": "Wright",
+      "tcNo": "10000000028",
+      "phone": "05550000028",
+      "income": 4800,
+      "creditAmount": 24000,
+      "creditType": "Konut"
+    },
+    {
+      "id": "29",
+      "firstName": "Cindy",
+      "lastName": "Scott",
+      "tcNo": "10000000029",
+      "phone": "05550000029",
+      "income": 3700,
+      "creditAmount": 20000,
+      "creditType": "İş"
+    },
+    {
+      "id": "30",
+      "firstName": "Derek",
+      "lastName": "Adams",
+      "tcNo": "10000000030",
+      "phone": "05550000030",
+      "income": 4500,
+      "creditAmount": 22000,
+      "creditType": "Ticari"
+    }
+  ]
 }

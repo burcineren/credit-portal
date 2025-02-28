@@ -1,1 +1,134 @@
-<p>credits-list works!</p>
+<div class="card">
+  <p-toast></p-toast>
+  <p-table
+    #dt
+    [value]="applications"
+    selectionMode="single"
+    [(selection)]="selectedApplication"
+    dataKey="id"
+    (onRowSelect)="onRowSelect($event)"
+    (onRowUnselect)="onRowUnselect($event)"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [paginator]="true"
+    [rows]="10"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3em"></th>
+        <th pSortableColumn="firstName">
+          First Name
+          <p-sortIcon field="firstName"></p-sortIcon>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filter($event, 'firstName', 'contains')"
+            placeholder="Filtrele..."
+          />
+        </th>
+        <th pSortableColumn="lastName">
+          Last Name
+          <p-sortIcon field="lastName"></p-sortIcon>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filter($event, 'lastName', 'contains')"
+            placeholder="Filtrele..."
+          />
+        </th>
+        <th pSortableColumn="tcNo">
+          TC No
+          <p-sortIcon field="tcNo"></p-sortIcon>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filter($event, 'tcNo', 'contains')"
+            placeholder="Filtrele..."
+          />
+        </th>
+        <th pSortableColumn="phone">
+          Phone
+          <p-sortIcon field="phone"></p-sortIcon>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filter($event, 'phone', 'contains')"
+            placeholder="Filtrele..."
+          />
+        </th>
+        <th pSortableColumn="income">
+          Income
+          <p-sortIcon field="income"></p-sortIcon>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filter($event, 'income', 'contains')"
+            placeholder="Filtrele..."
+          />
+        </th>
+        <th pSortableColumn="creditAmount">
+          Credit Amount
+          <p-sortIcon field="creditAmount"></p-sortIcon>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filter($event, 'creditAmount', 'contains')"
+            placeholder="Filtrele..."
+          />
+        </th>
+        <th pSortableColumn="creditType">
+          Credit Type
+          <p-sortIcon field="creditType"></p-sortIcon>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filter($event, 'creditType', 'contains')"
+            placeholder="Filtrele..."
+          />
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-application let-expanded="expanded">
+      <tr>
+        <td>
+          <a
+            href="#"
+            (click)="dt.toggleRow(application); $event.preventDefault()"
+          >
+            <i
+              class="pi"
+              [ngClass]="expanded ? 'pi-chevron-down' : 'pi-chevron-right'"
+            ></i>
+          </a>
+        </td>
+        <td>{{ application.firstName }}</td>
+        <td>{{ application.lastName }}</td>
+        <td>{{ application.tcNo }}</td>
+        <td>{{ application.phone }}</td>
+        <td>{{ application.income }}</td>
+        <td>{{ application.creditAmount }}</td>
+        <td>{{ application.creditType }}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="rowexpansion" let-application>
+      <tr>
+        <td colspan="8">
+          <div class="p-ml-4">
+            <h5>Detaylar</h5>
+            <p><strong>ID:</strong> {{ application.id }}</p>
+            <p><strong>First Name:</strong> {{ application.firstName }}</p>
+            <p><strong>Last Name:</strong> {{ application.lastName }}</p>
+            <p><strong>TC No:</strong> {{ application.tcNo }}</p>
+            <p><strong>Phone:</strong> {{ application.phone }}</p>
+            <p><strong>Income:</strong> {{ application.income }}</p>
+            <p>
+              <strong>Credit Amount:</strong> {{ application.creditAmount }}
+            </p>
+            <p><strong>Credit Type:</strong> {{ application.creditType }}</p>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
