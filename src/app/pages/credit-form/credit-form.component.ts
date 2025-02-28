@@ -1,9 +1,18 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+
 @Component({
   selector: 'app-credit-form',
   templateUrl: './credit-form.component.html',
-  styleUrls: ['./credit-form.component.scss']
+  styleUrls: ['./credit-form.component.scss'],
+  standalone: true,
+  imports: [CommonModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    ButtonModule],
 })
 export class CreditFormComponent {
   creditForm!: FormGroup;

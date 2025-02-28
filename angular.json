@@ -66,12 +66,15 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "credit-portal:build"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "credit-portal:build:production"
+              "buildTarget": "credit-portal:build:production"
             },
             "development": {
-              "browserTarget": "credit-portal:build:development"
+              "buildTarget": "credit-portal:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "credit-portal:build"
+            "buildTarget": "credit-portal:build"
           }
         },
         "test": {
