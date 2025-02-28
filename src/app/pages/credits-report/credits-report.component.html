@@ -1,40 +1,52 @@
 <div class="card">
-  <h2>Pivot Table Raporlama Ekranı</h2>
-  <!-- Grup Seçimi -->
-  <div class="mb-3">
-    <label for="groupBySelect"><strong>Grup Seçimi:</strong></label>
-    <!-- <p-dropdown
-      id="groupBySelect"
-      [options]="groupOptions"
-      [(ngModel)]="selectedGroup"
-      placeholder="Grup Seçiniz"
-      optionLabel="label"
-    ></p-dropdown> -->
-  </div>
+  <div
+    class="p-flex"
+    style="justify-content: space-between; align-items: center; flex-wrap: wrap"
+  >
+    <h2 style="margin: 0">Pivot Table Raporlama Ekranı</h2>
 
-  <!-- Export Butonları -->
-  <div class="mb-3">
-    <p-button
-      label="Export CSV"
-      icon="pi pi-file"
-      (click)="exportCSV()"
-    ></p-button>
-    <p-button
-      label="Export Excel"
-      icon="pi pi-file-excel"
-      class="ml-2"
-      (click)="exportExcel()"
-    ></p-button>
-  </div>
+    <div>
+      <div>
+        <strong>Toplam Başvuru:</strong> {{ applications?.length || 0 }}
+      </div>
+      <span class="ml-4">
+        <strong>Ortalama Kredi Tutarı:</strong> {{ getOverallAverage() }}
+      </span>
+    </div>
+    <div style="display: flex; align-items: center">
+      <div>
+        <p-dropdown
+          [options]="groupOptions"
+          [(ngModel)]="selectedGroup"
+          placeholder="Grup Seçiniz"
+          optionLabel="label"
+        ></p-dropdown>
+      </div>
 
-  <!-- Rapor Tablosu -->
+      <div>
+        <p-button
+          label="Export Excel"
+          icon="pi pi-file-excel"
+          class="ml-2"
+          (click)="exportExcel()"
+        ></p-button>
+      </div>
+    </div>
+  </div>
   <p-table
-    #reportTable
+    #dt
     [value]="applications"
     [rowGroupMode]="'subheader'"
     [groupRowsBy]="selectedGroup?.value"
     [sortMode]="'single'"
     [sortField]="selectedGroup?.value"
+    (onRowSelect)="onRowSelect($event)"
+    (onRowUnselect)="onRowUnselect($event)"
+    tableStyleClass="excel-pivot-table"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]"
     [globalFilterFields]="[
       'firstName',
       'lastName',
@@ -45,47 +57,76 @@
       'creditType'
     ]"
   >
-    <!-- Grup Başlık Şablonu -->
-    <ng-template pTemplate="groupheader" let-rowData let-rowIndex="rowIndex">
+    <ng-template pTemplate="header" let-columns>
       <tr>
-        <td colspan="8">
-          <strong>{{ selectedGroup?.label }}:</strong>
-          <span>
-            {{
-              selectedGroup?.value === "applicationDate"
-                ? (rowData[selectedGroup?.value] | date : "MM/dd/yyyy")
-                : rowData[selectedGroup?.value]
-            }}
-          </span>
-          <span class="ml-4"
-            >Toplam Başvuru:
-            {{ getGroupCount(rowData[selectedGroup?.value]) }}</span
-          >
-          <span class="ml-4">
-            Ortalama Kredi Tutarı:
-            {{
-              getGroupAverage(rowData[selectedGroup?.value]) | number : "1.0-2"
-            }}
-          </span>
-        </td>
+        <th pSortableColumn="firstName">
+          Adı <p-sortIcon field="firstName"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="firstName"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th pSortableColumn="lastName">
+          Soyadı <p-sortIcon field="lastName"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="lastName"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th pSortableColumn="tcNo">
+          TC No <p-sortIcon field="tcNo"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="tcNo"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th pSortableColumn="phone">
+          Telefon <p-sortIcon field="phone"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="phone"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th pSortableColumn="income">
+          Gelir <p-sortIcon field="income"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="income"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th pSortableColumn="creditAmount">
+          Kredi Tutarı <p-sortIcon field="creditAmount"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="creditAmount"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th pSortableColumn="creditType">
+          Kredi Türü <p-sortIcon field="creditType"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="creditType"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th pSortableColumn="applicationDate">
+          Başvuru Tarihi <p-sortIcon field="applicationDate"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="applicationDate"
+            display="menu"
+          ></p-columnFilter>
+        </th>
       </tr>
     </ng-template>
 
-    <!-- Sütun Başlıkları -->
-    <ng-template pTemplate="header">
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>TC No</th>
-        <th>Phone</th>
-        <th>Income</th>
-        <th>Credit Amount</th>
-        <th>Credit Type</th>
-        <th>Application Date</th>
-      </tr>
-    </ng-template>
-
-    <!-- Satır Şablonu -->
+    <!-- Body -->
     <ng-template pTemplate="body" let-application>
       <tr>
         <td>{{ application.firstName }}</td>
@@ -96,6 +137,17 @@
         <td>{{ application.creditAmount }}</td>
         <td>{{ application.creditType }}</td>
         <td>{{ application.applicationDate | date : "MM/dd/yyyy" }}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <tr>
+        <td colspan="4" style="text-align: right">
+          <strong>Genel Toplam</strong>
+        </td>
+        <td>{{ getTotal("income") }}</td>
+        <td>{{ getTotal("creditAmount") }}</td>
+        <td></td>
       </tr>
     </ng-template>
   </p-table>

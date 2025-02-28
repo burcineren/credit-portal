@@ -6,6 +6,8 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { RippleModule } from 'primeng/ripple';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,6 +22,8 @@ import { RippleModule } from 'primeng/ripple';
     ButtonModule,
     TagModule,
     RippleModule,
+    DropdownModule,
+    FormsModule,
   ]
 })
 export class CreditsReportModule { }

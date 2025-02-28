@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { CreditApplicationService } from 'src/app/core/services/credit-application.service';
+import { CreditApplicationService } from 'src/app/core/shared/services/credit-application.service';
 import { CreditApplication } from 'src/app/core/store/credits-state/credit-aplication.model';
 
 @Component({
