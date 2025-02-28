@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { CreditApplication } from './credit-aplication.model';
 import { AddCreditApplication } from './credit-aplication.actions';
-import { CreditApplicationService } from '../../services/credit-application.service';
+import { CreditApplicationService } from '../../shared/services/credit-application.service';
 
 
 export interface CreditApplicationStateModel {

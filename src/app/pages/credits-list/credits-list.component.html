@@ -11,6 +11,16 @@
     [tableStyle]="{ 'min-width': '50rem' }"
     [paginator]="true"
     [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [globalFilterFields]="[
+      'firstName',
+      'lastName',
+      'tcNo',
+      'phone',
+      'income',
+      'creditAmount',
+      'creditType'
+    ]"
   >
     <ng-template pTemplate="header">
       <tr>
@@ -18,72 +28,37 @@
         <th pSortableColumn="firstName">
           First Name
           <p-sortIcon field="firstName"></p-sortIcon>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filter($event, 'firstName', 'contains')"
-            placeholder="Filtrele..."
-          />
+          <p-columnFilter type="text" field="firstName" display="menu" />
         </th>
         <th pSortableColumn="lastName">
           Last Name
           <p-sortIcon field="lastName"></p-sortIcon>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filter($event, 'lastName', 'contains')"
-            placeholder="Filtrele..."
-          />
+          <p-columnFilter type="text" field="lastName" display="menu" />
         </th>
         <th pSortableColumn="tcNo">
           TC No
           <p-sortIcon field="tcNo"></p-sortIcon>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filter($event, 'tcNo', 'contains')"
-            placeholder="Filtrele..."
-          />
+          <p-columnFilter type="text" field="tcNo" display="menu" />
         </th>
         <th pSortableColumn="phone">
           Phone
           <p-sortIcon field="phone"></p-sortIcon>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filter($event, 'phone', 'contains')"
-            placeholder="Filtrele..."
-          />
+          <p-columnFilter type="text" field="phone" display="menu" />
         </th>
         <th pSortableColumn="income">
           Income
           <p-sortIcon field="income"></p-sortIcon>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filter($event, 'income', 'contains')"
-            placeholder="Filtrele..."
-          />
+          <p-columnFilter type="text" field="income" display="menu" />
         </th>
         <th pSortableColumn="creditAmount">
           Credit Amount
           <p-sortIcon field="creditAmount"></p-sortIcon>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filter($event, 'creditAmount', 'contains')"
-            placeholder="Filtrele..."
-          />
+          <p-columnFilter type="text" field="creditAmount" display="menu" />
         </th>
         <th pSortableColumn="creditType">
           Credit Type
           <p-sortIcon field="creditType"></p-sortIcon>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filter($event, 'creditType', 'contains')"
-            placeholder="Filtrele..."
-          />
+          <p-columnFilter type="text" field="creditType" display="menu" />
         </th>
       </tr>
     </ng-template>

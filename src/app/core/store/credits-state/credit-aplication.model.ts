@@ -6,4 +6,5 @@ export interface CreditApplication {
   income: number;
   creditAmount: number;
   creditType: string;
+  applicationDate: Date;
 }
