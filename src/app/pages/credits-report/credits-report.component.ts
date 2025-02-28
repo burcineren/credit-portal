@@ -11,11 +11,8 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./credits-report.component.scss']
 })
 export class CreditsReportComponent {
-  @ViewChild('dt') dt!: Table;
   @ViewChild('reportTable') reportTable: Table | undefined;
   applications: CreditApplication[] = [];
-  selectedApplication: CreditApplication | null = null;
-  expandedRows: { [key: string]: boolean } = {};
   selectedGroup: any;
   constructor(private creditAppService: CreditApplicationService, private messageService: MessageService) { }
   groupOptions = [
@@ -31,46 +28,6 @@ export class CreditsReportComponent {
       error: (err) => console.error('Error fetching applications:', err)
     });
   }
-  applyFilter(event: Event, field: string) {
-    const input = event.target as HTMLInputElement;
-    this.dt.filter(input.value, field, 'contains');
-  }
-  onRowSelect(event: any) {
-    this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event.data.name });
-  }
-
-  onRowUnselect(event: any) {
-    this.messageService.add({ severity: 'info', summary: 'Product Unselected', detail: event.data.name });
-  }
-
-
-  collapseAll() {
-    this.expandedRows = {};
-  }
-  getGroupCount(groupValue: any): number {
-    if (!this.selectedGroup) return 0;
-    return this.applications.filter(app => {
-      // if (this.selectedGroup.value === 'applicationDate') {
-      //   return new Date(app.applicationDate).toDateString() === new Date(groupValue).toDateString();
-      // } else {
-      //   return app[this.selectedGroup.value] === groupValue;
-      // }
-    }).length;
-  }
-
-  // getGroupAverage(groupValue: any): number {
-  //   if (!this.selectedGroup) return 0;
-  //   const groupApps = this.applications.filter(app => {
-  //     // if (this.selectedGroup.value === 'applicationDate') {
-  //     //   return new Date(app.applicationDate).toDateString() === new Date(groupValue).toDateString();
-  //     // } else {
-  //     //   return app[this.selectedGroup.value] === groupValue;
-  //     // }
-  //   });
-  //   if (groupApps.length === 0) return 0;
-  //   const total = groupApps.reduce((acc, cur) => acc + cur.creditAmount, 0);
-  //   return total / groupApps.length;
-  // }
   getOverallAverage(): number {
     if (!this.applications || this.applications.length === 0) {
       return 0;
@@ -79,13 +36,14 @@ export class CreditsReportComponent {
     return Math.round(totalCredit / this.applications.length);
   }
 
-  exportCSV() {
-    if (this.reportTable && this.applications && this.applications.length > 0) {
-      this.reportTable.exportCSV();
-    } else {
-      console.error('reportTable or data is undefined');
-    }
-  }
+  //TODO: for CSV
+  // exportCSV() {
+  //   if (this.reportTable && this.applications && this.applications.length > 0) {
+  //     this.reportTable.exportCSV();
+  //   } else {
+  //     console.error('reportTable or data is undefined');
+  //   }
+  // }
 
   exportExcel() {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.applications);
