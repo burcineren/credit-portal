@@ -1,0 +1,140 @@
+<div
+  class="p-d-flex p-jc-center p-ai-start"
+  style="min-height: 100vh; padding: 2rem"
+>
+  <div class="p-fluid" style="width: 100%; max-width: 900px">
+    <h2>Kredi Başvuru Formu</h2>
+
+    <form
+      [formGroup]="creditForm"
+      (ngSubmit)="onSubmit()"
+      class="p-formgrid p-grid"
+    >
+      <div class="p-field p-col-12 p-md-6">
+        <label for="firstName">Ad</label>
+        <input
+          id="firstName"
+          type="text"
+          pInputText
+          formControlName="firstName"
+        />
+        <div
+          *ngIf="
+            creditForm.get('firstName')?.invalid &&
+            creditForm.get('firstName')?.touched
+          "
+          class="p-error"
+        >
+          Ad gereklidir.
+        </div>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="lastName">Soyad</label>
+        <input
+          id="lastName"
+          type="text"
+          pInputText
+          formControlName="lastName"
+        />
+        <div
+          *ngIf="
+            creditForm.get('lastName')?.invalid &&
+            creditForm.get('lastName')?.touched
+          "
+          class="p-error"
+        >
+          Soyad gereklidir.
+        </div>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="tcNo">TC Kimlik No</label>
+        <input id="tcNo" type="text" pInputText formControlName="tcNo" />
+        <div
+          *ngIf="
+            creditForm.get('tcNo')?.invalid && creditForm.get('tcNo')?.touched
+          "
+          class="p-error"
+        >
+          TC Kimlik No 11 haneli olmalıdır.
+        </div>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="phone">Telefon</label>
+        <input id="phone" type="text" pInputText formControlName="phone" />
+        <div
+          *ngIf="
+            creditForm.get('phone')?.invalid && creditForm.get('phone')?.touched
+          "
+          class="p-error"
+        >
+          Telefon gereklidir.
+        </div>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="income">Gelir</label>
+        <input id="income" type="number" pInputText formControlName="income" />
+        <div
+          *ngIf="
+            creditForm.get('income')?.invalid &&
+            creditForm.get('income')?.touched
+          "
+          class="p-error"
+        >
+          Geçerli bir gelir giriniz.
+        </div>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="creditAmount">Kredi Tutarı</label>
+        <input
+          id="creditAmount"
+          type="number"
+          pInputText
+          formControlName="creditAmount"
+        />
+        <div
+          *ngIf="
+            creditForm.get('creditAmount')?.invalid &&
+            creditForm.get('creditAmount')?.touched
+          "
+          class="p-error"
+        >
+          Kredi tutarı negatif olamaz.
+        </div>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="creditType">Kredi Türü</label>
+        <select id="creditType" pInputText formControlName="creditType">
+          <option value="">Seçiniz</option>
+          <option value="Konut">Konut</option>
+          <option value="Taşıt">Taşıt</option>
+          <option value="İhtiyaç">İhtiyaç</option>
+        </select>
+        <div
+          *ngIf="
+            creditForm.get('creditType')?.invalid &&
+            creditForm.get('creditType')?.touched
+          "
+          class="p-error"
+        >
+          Kredi türü gereklidir.
+        </div>
+      </div>
+
+      <div class="p-field p-col-12">
+        <button
+          type="submit"
+          pButton
+          label="Başvuruyu Gönder"
+          [disabled]="creditForm.invalid"
+          style="width: 100%"
+        ></button>
+      </div>
+    </form>
+  </div>
+</div>
