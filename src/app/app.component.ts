@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  isDarkMode = false;
 
+  toggleDarkMode(): void {
+    this.isDarkMode = !this.isDarkMode;
+  }
 }

@@ -329,6 +329,17 @@
       "creditAmount": 22000,
       "creditType": "Ticari",
       "applicationDate": "2023-04-13"
+    },
+    {
+      "id": "b51a",
+      "firstName": "eren",
+      "lastName": "Eren",
+      "tcNo": "13333333115",
+      "phone": "05555555555",
+      "income": 55,
+      "creditAmount": 666,
+      "creditType": "Taşıt",
+      "applicationDate": "2025-03-01"
     }
   ]
 }
