@@ -12,7 +12,11 @@ import { AddCreditApplication } from 'src/app/core/store/credits-state/credit-ap
 export class CreditFormComponent {
   creditForm!: FormGroup;
   constructor(private store: Store, private messageService: MessageService, private router: Router) { }
+
   ngOnInit(): void {
+    const today = new Date();
+    // YYYY-MM-DD format
+    const formattedDate = today.toISOString().split('T')[0];
     this.creditForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -20,7 +24,8 @@ export class CreditFormComponent {
       phone: new FormControl('', Validators.required),
       income: new FormControl('', [Validators.required, Validators.min(0)]),
       creditAmount: new FormControl('', [Validators.required, Validators.min(0)]),
-      creditType: new FormControl('', Validators.required)
+      creditType: new FormControl('', Validators.required),
+      applicationDate: new FormControl(formattedDate)
     });
   }
 
