@@ -31,7 +31,8 @@ In this project, we use a JSON server to serve the data from `db.json`. Follow t
    ```bash
    npm install -g json-server
 
- 2. **Start the JSON Server:**
+2. **Start the JSON Server:**
 
-   ```bash
-    npm run json-server
+  ```bash
+   npm run json-server
+
