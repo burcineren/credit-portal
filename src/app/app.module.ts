@@ -11,10 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { NavbarModule } from './core/shared/navbar/navbar.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +26,8 @@ import { ToastModule } from 'primeng/toast';
     NgxsModule.forRoot([CreditApplicationState]),
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    ToastModule
-
-
+    ToastModule,
+    NavbarModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

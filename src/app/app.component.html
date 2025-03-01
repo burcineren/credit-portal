@@ -1,8 +1,4 @@
-<div [ngClass]="{ 'dark-theme': isDarkMode }">
-  <navbar></navbar>
+<navbar></navbar>
 
-  <p-toast></p-toast>
-  <!-- Uygulama içeriğiniz -->
-  <router-outlet></router-outlet>
-  <button (click)="toggleDarkMode()">Modu Değiştir</button>
-</div>
+<p-toast></p-toast>
+<router-outlet></router-outlet>

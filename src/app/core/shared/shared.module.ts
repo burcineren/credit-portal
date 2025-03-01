@@ -6,13 +6,13 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarModule } from './navbar/navbar.module';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [],
   imports: [
-    CommonModule,
-    MenubarModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, CommonModule
+    CommonModule, NavbarModule
   ],
-  exports: [NavbarComponent]
+  exports: []
 })
 export class SharedModule { }
