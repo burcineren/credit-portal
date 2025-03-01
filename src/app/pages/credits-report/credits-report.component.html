@@ -1,152 +1,152 @@
-<div class="card">
-  <div
-    class="p-flex"
-    style="justify-content: space-between; align-items: center; flex-wrap: wrap"
-  >
-    <h2 style="margin: 0">Pivot Table Raporlama Ekranı</h2>
+<div class="container">
+  <div class="card">
+    <div class="p-flex p-field">
+      <h2 style="margin-top: 20px">Pivot Table Raporlama Ekranı</h2>
 
-    <div>
-      <div>
-        <strong>Toplam Başvuru:</strong> {{ applications?.length || null }}
+      <div class="p-field">
+        <div>
+          <strong>Toplam Başvuru:</strong> {{ applications?.length || null }}
+        </div>
+        <span class="ml-4">
+          <strong>Ortalama Kredi Tutarı:</strong> {{ getOverallAverage() }}
+        </span>
       </div>
-      <span class="ml-4">
-        <strong>Ortalama Kredi Tutarı:</strong> {{ getOverallAverage() }}
-      </span>
-    </div>
-    <div style="display: flex; align-items: center">
-      <div>
-        <p-dropdown
-          [options]="groupOptions"
-          [(ngModel)]="selectedGroup"
-          placeholder="Grup Seçiniz"
-          optionLabel="label"
-        ></p-dropdown>
-      </div>
+      <div class="p-mt-2" style="display: flex; align-items: center">
+        <div>
+          <p-dropdown
+            [options]="groupOptions"
+            [(ngModel)]="selectedGroup"
+            placeholder="Grup Seçiniz"
+            optionLabel="label"
+          ></p-dropdown>
+        </div>
 
-      <div>
-        <p-button
-          label="Export Excel"
-          icon="pi pi-file-excel"
-          class="ml-2"
-          (click)="exportExcel()"
-        ></p-button>
+        <div>
+          <p-button
+            label="Export Excel"
+            icon="pi pi-file-excel"
+            class="ml-2"
+            (click)="exportExcel()"
+          ></p-button>
+        </div>
       </div>
     </div>
+    <p-table
+      #dt
+      [value]="applications"
+      [rowGroupMode]="'subheader'"
+      [groupRowsBy]="selectedGroup?.value"
+      [sortMode]="'single'"
+      [sortField]="selectedGroup?.value"
+      tableStyleClass="excel-pivot-table"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [globalFilterFields]="[
+        'firstName',
+        'lastName',
+        'tcNo',
+        'phone',
+        'income',
+        'creditAmount',
+        'creditType',
+        'applicationDate'
+      ]"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th pSortableColumn="firstName">
+            Adı <p-sortIcon field="firstName"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="firstName"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="lastName">
+            Soyadı <p-sortIcon field="lastName"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="lastName"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="tcNo">
+            TC No <p-sortIcon field="tcNo"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="tcNo"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="phone">
+            Telefon <p-sortIcon field="phone"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="phone"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="income">
+            Gelir <p-sortIcon field="income"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="income"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="creditAmount">
+            Kredi Tutarı <p-sortIcon field="creditAmount"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="creditAmount"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="creditType">
+            Kredi Türü <p-sortIcon field="creditType"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="creditType"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="applicationDate">
+            Başvuru Tarihi <p-sortIcon field="applicationDate"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="applicationDate"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+        </tr>
+      </ng-template>
+
+      <!-- Body -->
+      <ng-template pTemplate="body" let-application>
+        <tr>
+          <td>{{ application.firstName }}</td>
+          <td>{{ application.lastName }}</td>
+          <td>{{ application.tcNo }}</td>
+          <td>{{ application.phone }}</td>
+          <td>{{ application.income }}</td>
+          <td>{{ application.creditAmount }}</td>
+          <td>{{ application.creditType }}</td>
+          <td>{{ application.applicationDate | date : "MM/dd/yyyy" }}</td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <tr>
+          <td colspan="4" style="text-align: right">
+            <strong>Genel Toplam</strong>
+          </td>
+          <td>{{ getTotal("income") }}</td>
+          <td>{{ getTotal("creditAmount") }}</td>
+          <td></td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
-  <p-table
-    #dt
-    [value]="applications"
-    [rowGroupMode]="'subheader'"
-    [groupRowsBy]="selectedGroup?.value"
-    [sortMode]="'single'"
-    [sortField]="selectedGroup?.value"
-    tableStyleClass="excel-pivot-table"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [paginator]="true"
-    [rows]="10"
-    [rowsPerPageOptions]="[10, 25, 50]"
-    [globalFilterFields]="[
-      'firstName',
-      'lastName',
-      'tcNo',
-      'phone',
-      'income',
-      'creditAmount',
-      'creditType'
-    ]"
-  >
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th pSortableColumn="firstName">
-          Adı <p-sortIcon field="firstName"></p-sortIcon>
-          <p-columnFilter
-            type="text"
-            field="firstName"
-            display="menu"
-          ></p-columnFilter>
-        </th>
-        <th pSortableColumn="lastName">
-          Soyadı <p-sortIcon field="lastName"></p-sortIcon>
-          <p-columnFilter
-            type="text"
-            field="lastName"
-            display="menu"
-          ></p-columnFilter>
-        </th>
-        <th pSortableColumn="tcNo">
-          TC No <p-sortIcon field="tcNo"></p-sortIcon>
-          <p-columnFilter
-            type="text"
-            field="tcNo"
-            display="menu"
-          ></p-columnFilter>
-        </th>
-        <th pSortableColumn="phone">
-          Telefon <p-sortIcon field="phone"></p-sortIcon>
-          <p-columnFilter
-            type="text"
-            field="phone"
-            display="menu"
-          ></p-columnFilter>
-        </th>
-        <th pSortableColumn="income">
-          Gelir <p-sortIcon field="income"></p-sortIcon>
-          <p-columnFilter
-            type="text"
-            field="income"
-            display="menu"
-          ></p-columnFilter>
-        </th>
-        <th pSortableColumn="creditAmount">
-          Kredi Tutarı <p-sortIcon field="creditAmount"></p-sortIcon>
-          <p-columnFilter
-            type="text"
-            field="creditAmount"
-            display="menu"
-          ></p-columnFilter>
-        </th>
-        <th pSortableColumn="creditType">
-          Kredi Türü <p-sortIcon field="creditType"></p-sortIcon>
-          <p-columnFilter
-            type="text"
-            field="creditType"
-            display="menu"
-          ></p-columnFilter>
-        </th>
-        <th pSortableColumn="applicationDate">
-          Başvuru Tarihi <p-sortIcon field="applicationDate"></p-sortIcon>
-          <p-columnFilter
-            type="text"
-            field="applicationDate"
-            display="menu"
-          ></p-columnFilter>
-        </th>
-      </tr>
-    </ng-template>
-
-    <!-- Body -->
-    <ng-template pTemplate="body" let-application>
-      <tr>
-        <td>{{ application.firstName }}</td>
-        <td>{{ application.lastName }}</td>
-        <td>{{ application.tcNo }}</td>
-        <td>{{ application.phone }}</td>
-        <td>{{ application.income }}</td>
-        <td>{{ application.creditAmount }}</td>
-        <td>{{ application.creditType }}</td>
-        <td>{{ application.applicationDate | date : "MM/dd/yyyy" }}</td>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="footer">
-      <tr>
-        <td colspan="4" style="text-align: right">
-          <strong>Genel Toplam</strong>
-        </td>
-        <td>{{ getTotal("income") }}</td>
-        <td>{{ getTotal("creditAmount") }}</td>
-        <td></td>
-      </tr>
-    </ng-template>
-  </p-table>
 </div>

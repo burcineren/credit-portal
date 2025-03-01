@@ -1,7 +1,4 @@
-<div
-  class="p-d-flex p-jc-center p-ai-start"
-  style="min-height: 100vh; padding: 2rem"
->
+<div class="p-d-flex p-jc-center p-ai-start container p-mt-2">
   <div class="p-fluid" style="width: 100%; max-width: 900px">
     <h2>Kredi Başvuru Formu</h2>
 
@@ -10,7 +7,7 @@
       (ngSubmit)="onSubmit()"
       class="p-formgrid p-grid"
     >
-      <div class="p-field p-col-12 p-md-6">
+      <div class="p-field p-col-12 p-md-6 mb-3">
         <label for="firstName">Ad</label>
         <input
           id="firstName"
@@ -29,7 +26,7 @@
         </div>
       </div>
 
-      <div class="p-field p-col-12 p-md-6">
+      <div class="p-field p-col-12 p-md-6 mb-3">
         <label for="lastName">Soyad</label>
         <input
           id="lastName"
@@ -48,7 +45,7 @@
         </div>
       </div>
 
-      <div class="p-field p-col-12 p-md-6">
+      <div class="p-field p-col-12 p-md-6 mb-3">
         <label for="tcNo">TC Kimlik No</label>
         <input id="tcNo" type="text" pInputText formControlName="tcNo" />
         <div
@@ -61,7 +58,7 @@
         </div>
       </div>
 
-      <div class="p-field p-col-12 p-md-6">
+      <div class="p-field p-col-12 p-md-6 mb-3">
         <label for="phone">Telefon</label>
         <input id="phone" type="text" pInputText formControlName="phone" />
         <div
@@ -74,7 +71,7 @@
         </div>
       </div>
 
-      <div class="p-field p-col-12 p-md-6">
+      <div class="p-field p-col-12 p-md-6 mb-3">
         <label for="income">Gelir</label>
         <input id="income" type="number" pInputText formControlName="income" />
         <div
@@ -88,7 +85,7 @@
         </div>
       </div>
 
-      <div class="p-field p-col-12 p-md-6">
+      <div class="p-field p-col-12 p-md-6 mb-3">
         <label for="creditAmount">Kredi Tutarı</label>
         <input
           id="creditAmount"
@@ -107,7 +104,7 @@
         </div>
       </div>
 
-      <div class="p-field p-col-12">
+      <div class="p-field p-col-12 mb-3">
         <label for="creditType">Kredi Türü</label>
         <select id="creditType" pInputText formControlName="creditType">
           <option value="">Seçiniz</option>
@@ -126,7 +123,10 @@
         </div>
       </div>
 
-      <div class="p-field p-col-12">
+      <!-- applicationDate alanı gizli olduğu için boşluk eklemeye gerek yok -->
+      <input type="hidden" formControlName="applicationDate" />
+
+      <div class="p-field p-col-12 mb-3">
         <button
           type="submit"
           pButton

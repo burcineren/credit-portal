@@ -25,21 +25,5 @@ export class CreditListComponent implements OnInit {
       error: (err) => console.error('Error fetching applications:', err)
     });
   }
-  applyFilter(event: Event, field: string) {
-    const input = event.target as HTMLInputElement;
-    this.dt.filter(input.value, field, 'contains');
-  }
-  onRowSelect(event: any) {
-    this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event.data.name });
-  }
-
-  onRowUnselect(event: any) {
-    this.messageService.add({ severity: 'info', summary: 'Product Unselected', detail: event.data.name });
-  }
-
-
-  collapseAll() {
-    this.expandedRows = {};
-  }
 
 }
