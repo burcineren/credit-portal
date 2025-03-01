@@ -5,13 +5,13 @@
 
       <div class="p-field">
         <div>
-          <strong>Toplam Başvuru:</strong> {{ applications?.length || null }}
+          <strong>Toplam Başvuru:</strong> {{ applications.length || null }}
         </div>
         <span class="ml-4">
           <strong>Ortalama Kredi Tutarı:</strong> {{ getOverallAverage() }}
         </span>
       </div>
-      <div class="p-mt-2" style="display: flex; align-items: center">
+      <div class="" style="display: flex; align-items: center">
         <div>
           <p-dropdown
             [options]="groupOptions"
@@ -21,7 +21,7 @@
           ></p-dropdown>
         </div>
 
-        <div>
+        <div class="ml-20">
           <p-button
             label="Export Excel"
             icon="pi pi-file-excel"
