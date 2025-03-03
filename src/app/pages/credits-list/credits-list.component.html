@@ -21,7 +21,6 @@
         'creditType',
         'applicationDate'
       ]"
-      class=""
     >
       <ng-template pTemplate="header">
         <tr>
@@ -29,37 +28,65 @@
           <th pSortableColumn="firstName">
             Ad
             <p-sortIcon field="firstName"></p-sortIcon>
-            <p-columnFilter type="text" field="firstName" display="menu" />
+            <p-columnFilter
+              type="text"
+              field="firstName"
+              display="menu"
+            ></p-columnFilter>
           </th>
           <th pSortableColumn="lastName">
             Soyad
             <p-sortIcon field="lastName"></p-sortIcon>
-            <p-columnFilter type="text" field="lastName" display="menu" />
+            <p-columnFilter
+              type="text"
+              field="lastName"
+              display="menu"
+            ></p-columnFilter>
           </th>
           <th pSortableColumn="tcNo">
             TC Kimlik No
             <p-sortIcon field="tcNo"></p-sortIcon>
-            <p-columnFilter type="text" field="tcNo" display="menu" />
+            <p-columnFilter
+              type="text"
+              field="tcNo"
+              display="menu"
+            ></p-columnFilter>
           </th>
           <th pSortableColumn="phone">
             Telefon
             <p-sortIcon field="phone"></p-sortIcon>
-            <p-columnFilter type="text" field="phone" display="menu" />
+            <p-columnFilter
+              type="text"
+              field="phone"
+              display="menu"
+            ></p-columnFilter>
           </th>
           <th pSortableColumn="income">
             Gelir
             <p-sortIcon field="income"></p-sortIcon>
-            <p-columnFilter type="text" field="income" display="menu" />
+            <p-columnFilter
+              type="text"
+              field="income"
+              display="menu"
+            ></p-columnFilter>
           </th>
           <th pSortableColumn="creditAmount">
             Kredi Tutarı
             <p-sortIcon field="creditAmount"></p-sortIcon>
-            <p-columnFilter type="text" field="creditAmount" display="menu" />
+            <p-columnFilter
+              type="text"
+              field="creditAmount"
+              display="menu"
+            ></p-columnFilter>
           </th>
           <th pSortableColumn="creditType">
             Kredi Tipi
             <p-sortIcon field="creditType"></p-sortIcon>
-            <p-columnFilter type="text" field="creditType" display="menu" />
+            <p-columnFilter
+              type="text"
+              field="creditType"
+              display="menu"
+            ></p-columnFilter>
           </th>
           <th pSortableColumn="applicationDate">
             Başvuru Tarihi
@@ -68,7 +95,7 @@
               type="date"
               field="applicationDate"
               display="menu"
-            />
+            ></p-columnFilter>
           </th>
         </tr>
       </ng-template>
@@ -90,16 +117,20 @@
           <td>{{ application.lastName }}</td>
           <td>{{ application.tcNo }}</td>
           <td>{{ application.phone }}</td>
-          <td>{{ application.income }}</td>
-          <td>{{ application.creditAmount }}</td>
+          <td>
+            {{ application.income | currency : "₺" : "symbol" : "1.0-0" }}
+          </td>
+          <td>
+            {{ application.creditAmount | currency : "₺" : "symbol" : "1.0-0" }}
+          </td>
           <td>{{ application.creditType }}</td>
-          <td>{{ application.applicationDate }}</td>
+          <td>{{ application.applicationDate | date : "dd/MM/yyyy" }}</td>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="rowexpansion" let-application>
         <tr>
-          <td colspan="8">
+          <td colspan="9">
             <div class="p-ml-4">
               <h5>Detaylar</h5>
               <p><strong>ID:</strong> {{ application.id }}</p>
@@ -107,9 +138,15 @@
               <p><strong>Soyadı:</strong> {{ application.lastName }}</p>
               <p><strong>TC Kimlik No:</strong> {{ application.tcNo }}</p>
               <p><strong>Telefon:</strong> {{ application.phone }}</p>
-              <p><strong>Gelir:</strong> {{ application.income }}</p>
               <p>
-                <strong>Kredi Tutarı:</strong> {{ application.creditAmount }}
+                <strong>Gelir:</strong>
+                {{ application.income | currency : "₺" : "symbol" : "1.0-0" }}
+              </p>
+              <p>
+                <strong>Kredi Tutarı:</strong>
+                {{
+                  application.creditAmount | currency : "₺" : "symbol" : "1.0-0"
+                }}
               </p>
               <p><strong>Kredi Tipi:</strong> {{ application.creditType }}</p>
               <p>
