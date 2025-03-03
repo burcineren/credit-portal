@@ -1,149 +1,134 @@
 <div class="container">
   <div class="card">
-    <div class="p-flex p-field">
-      <h2 style="margin-top: 20px">Pivot Table Raporlama Ekranı</h2>
+    <h2 style="margin-top: 20px">Pivot Table Raporlama Ekranı</h2>
 
-      <div class="p-field">
-        <div>
-          <strong>Toplam Başvuru:</strong> {{ applications.length || null }}
-        </div>
-        <span class="ml-4">
-          <strong>Ortalama Kredi Tutarı:</strong> {{ getOverallAverage() }}
-        </span>
+    <div
+      class="p-field"
+      style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px"
+    >
+      <div>
+        <p-dropdown
+          [options]="groupOptions"
+          [(ngModel)]="selectedGroup"
+          placeholder="Kredi Türü Seçiniz"
+          optionLabel="label"
+          optionValue="value"
+          (onChange)="applyFilters()"
+        ></p-dropdown>
       </div>
-      <div class="" style="display: flex; align-items: center">
-        <div>
-          <p-dropdown
-            [options]="groupOptions"
-            [(ngModel)]="selectedGroup"
-            placeholder="Grup Seçiniz"
-            optionLabel="label"
-          ></p-dropdown>
-        </div>
 
-        <div class="ml-20">
-          <p-button
-            label="Export Excel"
-            icon="pi pi-file-excel"
-            class="ml-2"
-            (click)="exportExcel()"
-          ></p-button>
-        </div>
+      <div>
+        <p-dropdown
+          [options]="availableYears"
+          [(ngModel)]="selectedYear"
+          placeholder="Yıl Seçiniz"
+          optionLabel="label"
+          optionValue="value"
+          (onChange)="applyFilters()"
+        ></p-dropdown>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          pInputText
+          placeholder="Genel Arama"
+          [(ngModel)]="globalFilter"
+          (input)="applyFilters()"
+          style="width: 200px"
+        />
+      </div>
+
+      <div>
+        <p-button
+          label="Export Excel"
+          icon="pi pi-file-excel"
+          class="ml-2"
+          (click)="exportExcel()"
+        ></p-button>
       </div>
     </div>
+    <div class="p-field" style="margin-bottom: 20px">
+      <p-multiSelect
+        [options]="allColumns"
+        [(ngModel)]="selectedColumns"
+        defaultLabel="Kolon Seçiniz"
+        optionLabel="header"
+        placeholder="Kolon Seçiniz"
+        (ngModelChange)="applyFilters()"
+      ></p-multiSelect>
+    </div>
+
+    <div>
+      <strong>Toplam Başvuru:</strong> {{ filteredApplications.length }}
+      <span class="ml-4">
+        <strong>Toplam Gelir:</strong>
+        {{ getTotal("income") | currency : "₺" : "symbol" : "1.0-0" }}
+      </span>
+      <span class="ml-4">
+        <strong>Toplam Kredi Tutarı:</strong>
+        {{ getTotal("creditAmount") | currency : "₺" : "symbol" : "1.0-0" }}
+      </span>
+    </div>
+
     <p-table
-      #dt
-      [value]="applications"
+      [value]="filteredApplications"
       [rowGroupMode]="'subheader'"
-      [groupRowsBy]="selectedGroup?.value"
+      [groupRowsBy]="selectedGroup"
       [sortMode]="'single'"
-      [sortField]="selectedGroup?.value"
+      [sortField]="selectedGroup"
       tableStyleClass="excel-pivot-table"
       [tableStyle]="{ 'min-width': '50rem' }"
       [paginator]="true"
       [rows]="10"
       [rowsPerPageOptions]="[10, 25, 50]"
-      [globalFilterFields]="[
-        'firstName',
-        'lastName',
-        'tcNo',
-        'phone',
-        'income',
-        'creditAmount',
-        'creditType',
-        'applicationDate'
-      ]"
     >
-      <ng-template pTemplate="header" let-columns>
+      <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="firstName">
-            Adı <p-sortIcon field="firstName"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="firstName"
-              display="menu"
-            ></p-columnFilter>
-          </th>
-          <th pSortableColumn="lastName">
-            Soyadı <p-sortIcon field="lastName"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="lastName"
-              display="menu"
-            ></p-columnFilter>
-          </th>
-          <th pSortableColumn="tcNo">
-            TC No <p-sortIcon field="tcNo"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="tcNo"
-              display="menu"
-            ></p-columnFilter>
-          </th>
-          <th pSortableColumn="phone">
-            Telefon <p-sortIcon field="phone"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="phone"
-              display="menu"
-            ></p-columnFilter>
-          </th>
-          <th pSortableColumn="income">
-            Gelir <p-sortIcon field="income"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="income"
-              display="menu"
-            ></p-columnFilter>
-          </th>
-          <th pSortableColumn="creditAmount">
-            Kredi Tutarı <p-sortIcon field="creditAmount"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="creditAmount"
-              display="menu"
-            ></p-columnFilter>
-          </th>
-          <th pSortableColumn="creditType">
-            Kredi Türü <p-sortIcon field="creditType"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="creditType"
-              display="menu"
-            ></p-columnFilter>
-          </th>
-          <th pSortableColumn="applicationDate">
-            Başvuru Tarihi <p-sortIcon field="applicationDate"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="applicationDate"
-              display="menu"
-            ></p-columnFilter>
+          <th *ngFor="let column of selectedColumns">
+            {{ column.header }}
           </th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-application>
         <tr>
-          <td>{{ application.firstName }}</td>
-          <td>{{ application.lastName }}</td>
-          <td>{{ application.tcNo }}</td>
-          <td>{{ application.phone }}</td>
-          <td>{{ application.income }}</td>
-          <td>{{ application.creditAmount }}</td>
-          <td>{{ application.creditType }}</td>
-          <td>{{ application.applicationDate | date : "MM/dd/yyyy" }}</td>
+          <td *ngFor="let column of selectedColumns">
+            <ng-container
+              *ngIf="
+                column.field === 'income' || column.field === 'creditAmount';
+                else normalCell
+              "
+            >
+              {{
+                application[column.field] | currency : "₺" : "symbol" : "1.0-0"
+              }}
+            </ng-container>
+            <ng-template #normalCell>
+              {{
+                column.field === "applicationDate"
+                  ? (application[column.field] | date : "MM/dd/yyyy")
+                  : application[column.field]
+              }}
+            </ng-template>
+          </td>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="footer">
         <tr>
-          <td colspan="4" style="text-align: right">
-            <strong>Genel Toplam</strong>
+          <td *ngFor="let column of selectedColumns" style="text-align: right">
+            <strong *ngIf="column.field === 'income'">
+              Toplam Gelir:
+              {{ getTotal("income") | currency : "₺" : "symbol" : "1.0-0" }}
+            </strong>
+            <strong *ngIf="column.field === 'creditAmount'">
+              Toplam Kredi:
+              {{
+                getTotal("creditAmount") | currency : "₺" : "symbol" : "1.0-0"
+              }}
+            </strong>
           </td>
-          <td>{{ getTotal("income") }}</td>
-          <td>{{ getTotal("creditAmount") }}</td>
-          <td></td>
         </tr>
       </ng-template>
     </p-table>

@@ -8,7 +8,8 @@ import { TagModule } from 'primeng/tag';
 import { RippleModule } from 'primeng/ripple';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
-
+import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 @NgModule({
@@ -24,6 +25,8 @@ import { FormsModule } from '@angular/forms';
     RippleModule,
     DropdownModule,
     FormsModule,
+    InputTextModule,
+    MultiSelectModule
   ]
 })
 export class CreditsReportModule { }
