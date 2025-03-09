@@ -10,9 +10,7 @@ import { CreditApplication } from 'src/app/core/store/credits-state/credit-aplic
   styleUrls: ['./credits-list.component.scss']
 })
 export class CreditListComponent implements OnInit {
-  @ViewChild('dt') dt!: Table;
   applications: CreditApplication[] = [];
-  selectedApplication: CreditApplication | null = null;
   expandedRows: { [key: string]: boolean } = {};
 
   constructor(private creditAppService: CreditApplicationService, private messageService: MessageService) { }
